@@ -25,7 +25,7 @@
 
       <div class="text-left" v-if="product">
         <!-- <b-button >Toggle Sidebar</b-button> -->
-        <b-sidebar id="sidebar-right" :title="product.title" right shadow v-model="visible">
+        <b-sidebar id="sidebar-right" :title="product.title" right shadow >
           <div class="px-3 py-2">
             <b-img :src="product.image" fluid thumbnail></b-img>
             <p>
