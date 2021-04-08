@@ -1,6 +1,6 @@
 // src/server.js
 import { createServer, Response } from "miragejs";
-import wallet from "./wallets";
+import product from "./products";
 
 export function makeServer({ environment = "development" } = {}) {
   let server = createServer({
@@ -9,8 +9,8 @@ export function makeServer({ environment = "development" } = {}) {
     routes() {
       this.namespace = "/api";
 
-      this.get("/wallet", () => {
-        return new Response(200, {}, wallet);
+      this.get("/product", () => {
+        return new Response(200, {}, product);
       });
     },
   });

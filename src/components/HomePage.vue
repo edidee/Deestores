@@ -2,10 +2,10 @@
   <div class="container">
     <div></div>
     <div class="row">
-      <div class="col-md-3 mt-5" v-for="wallet in wallets" :key="wallet.id">
+      <div class="col-md-3 mt-5" v-for="product in products" :key="product.id">
         <b-card
-          :title="wallet.title"
-          :img-src="wallet.image"
+          :title="product.title"
+          :img-src="product.image"
           img-alt="Image"
           img-top
           tag="article"
@@ -15,9 +15,11 @@
           v-b-toggle.sidebar-right
         >
           <b-card-text class="text-left price">
-            US ${{ wallet.price }}
+            US ${{ product.price }}
           </b-card-text>
-          <button type="button" class="btn" @click="addToCart(product)">
+          <button type="button" class="btn"
+           @click="addToCart(product)
+          ">
             Add to Cart
           </button>
         </b-card>
@@ -25,13 +27,13 @@
 
       <div class="text-left" v-if="product">
         <!-- <b-button >Toggle Sidebar</b-button> -->
-        <b-sidebar id="sidebar-right" :title="wallet.title" right shadow>
+        <b-sidebar id="sidebar-right" :title="product.title" right shadow>
           <div class="px-3 py-2">
-            <b-img :src="wallet.image" fluid thumbnail></b-img>
+            <b-img :src="product.image" fluid thumbnail></b-img>
             <p>
-              {{ wallet.description }}
+              {{ product.description }}
             </p>
-            <p class="price">US ${{ wallet.price }}</p>
+            <p class="price">US ${{ product.price }}</p>
             <div class="d-flex justify-content-between">
               <div style="width: auto; margin-right: 6%" class="mb-3 mt-2">
                 <button
@@ -88,7 +90,7 @@
 export default {
   data() {
     return {
-      wallets: {},
+      products: {},
       product: null,
       visible: true,
       cart: [],
@@ -102,8 +104,8 @@ export default {
 
     async fetchAPIData() {
       try {
-        const response = await this.$http.get("/api/wallet");
-        this.wallets = JSON.parse(JSON.stringify(response.data.data));
+        const response = await this.$http.get("/api/product");
+        this.products = JSON.parse(JSON.stringify(response.data.data));
       } catch (error) {
         console.log(error);
       }
