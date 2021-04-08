@@ -2,10 +2,10 @@
   <div class="container">
     <div></div>
     <div class="row">
-      <div class="col-md-3 mt-5" v-for="product in products" :key="product.id">
+      <div class="col-md-3 mt-5" v-for="wallet in wallets" :key="wallet.id">
         <b-card
-          :title="product.title"
-          :img-src="product.image"
+          :title="wallet.title"
+          :img-src="wallet.image"
           img-alt="Image"
           img-top
           tag="article"
@@ -15,7 +15,7 @@
           v-b-toggle.sidebar-right
         >
           <b-card-text class="text-left price">
-            US ${{ product.price }}
+            US ${{ wallet.price }}
           </b-card-text>
           <button type="button" class="btn" @click="addToCart(product)">
             Add to Cart
@@ -25,7 +25,7 @@
 
       <div class="text-left" v-if="product">
         <!-- <b-button >Toggle Sidebar</b-button> -->
-        <b-sidebar id="sidebar-right" :title="product.title" right shadow >
+        <b-sidebar id="sidebar-right" :title="product.title" right shadow>
           <div class="px-3 py-2">
             <b-img :src="product.image" fluid thumbnail></b-img>
             <p>
@@ -88,11 +88,10 @@
 export default {
   data() {
     return {
-      products: [],
+      wallets: {},
       product: null,
-      visible:true,
+      visible: true,
       cart: [],
-      url: "http://localhost:3000/products?_limit=20",
     };
   },
   methods: {
@@ -100,11 +99,11 @@ export default {
       this.product = product;
       console.log(this.product);
     },
+
     async fetchAPIData() {
       try {
-        const response = await this.$http.get(this.url);
-        this.products = response.data;
-        console.log(response.data);
+        const response = await this.$http.get("/api/wallet");
+        this.wallets = JSON.parse(JSON.stringify(response.data.data));
       } catch (error) {
         console.log(error);
       }
