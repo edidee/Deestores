@@ -25,13 +25,13 @@
 
       <div class="text-left" v-if="product">
         <!-- <b-button >Toggle Sidebar</b-button> -->
-        <b-sidebar id="sidebar-right" :title="product.title" right shadow>
+        <b-sidebar id="sidebar-right" :title="wallet.title" right shadow>
           <div class="px-3 py-2">
-            <b-img :src="product.image" fluid thumbnail></b-img>
+            <b-img :src="wallet.image" fluid thumbnail></b-img>
             <p>
-              {{ product.description }}
+              {{ wallet.description }}
             </p>
-            <p class="price">US ${{ product.price }}</p>
+            <p class="price">US ${{ wallet.price }}</p>
             <div class="d-flex justify-content-between">
               <div style="width: auto; margin-right: 6%" class="mb-3 mt-2">
                 <button
