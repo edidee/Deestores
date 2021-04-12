@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-     <Header />
-     <HomePage />
+    <Header />
+    <HomePage />
     <!-- <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
@@ -9,14 +9,14 @@
 
 <script>
 // @ is an alias to /src
-import Header from '../components/Navigation/Header'
-import HomePage from '../components/HomePage'
+import Header from "../components/Navigation/Header";
+import HomePage from "../components/HomePage";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Header,
-    HomePage
-  }
-}
+    HomePage,
+  },
+};
 </script>

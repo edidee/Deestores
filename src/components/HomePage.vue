@@ -17,9 +17,7 @@
           <b-card-text class="text-left price">
             US ${{ product.price }}
           </b-card-text>
-          <button type="button" class="btn"
-           @click="addToCart(product)
-          ">
+          <button type="button" class="btn" @click="addToCart(product)">
             Add to Cart
           </button>
         </b-card>
@@ -90,22 +88,22 @@
 export default {
   data() {
     return {
-      products: {},
+      products: [],
       product: null,
       visible: true,
       cart: [],
+      url: "/api/products",
     };
   },
   methods: {
     showDetails(product) {
       this.product = product;
-      console.log(this.product);
     },
-
     async fetchAPIData() {
       try {
-        const response = await this.$http.get("/api/product");
-        this.products = JSON.parse(JSON.stringify(response.data.data));
+        const response = await this.$http.get(this.url);
+        const { data } = response.data;
+        this.products = data;
       } catch (error) {
         console.log(error);
       }
@@ -121,7 +119,7 @@ export default {
     //   // console.log(product);
     // },
   },
-  mounted() {
+  created() {
     this.fetchAPIData();
   },
 };
