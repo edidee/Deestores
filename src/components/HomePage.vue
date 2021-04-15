@@ -99,15 +99,16 @@ export default {
     showDetails(product) {
       this.product = product;
     },
-    async fetchAPIData() {
-      try {
-        const response = await this.$http.get(this.url);
-        const { data } = response.data;
-        this.products = data;
-      } catch (error) {
-        console.log(error);
-      }
-    },
+    // async fetchAPIData() {
+    //   try {
+    //     const response = await this.$http.get(this.url);
+    //     const { data } = response.data;
+    //     this.products = data;
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    
+   // },
 
     // addToCart(product) {
     //   //push prudt to cart
@@ -120,7 +121,12 @@ export default {
     // },
   },
   created() {
-    this.fetchAPIData();
+    // this.fetchAPIData();
+     fetch(this.url)
+        .then(res => res.json())
+        .then(json => {
+          this.products = json.products
+        })
   },
 };
 </script>
