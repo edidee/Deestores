@@ -14,7 +14,7 @@
     </form>
     <ul class="navbar-nav mt-2">
       <li class="nav-item active">
-          <router-link to="/login" class="nav-link ml-2">
+          <router-link to="/login" class="nav-link ml-2" >
           Login
           </router-link>
       </li>

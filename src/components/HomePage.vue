@@ -27,7 +27,7 @@
         <!-- <b-button >Toggle Sidebar</b-button> -->
         <b-sidebar id="sidebar-right" :title="product.title" right shadow>
           <div class="px-3 py-2">
-            <b-img :src="product.image" fluid thumbnail></b-img>
+            <b-img :src="product.image" fluid thumbnail></b-img><br>
             <p>
               {{ product.description }}
             </p>
@@ -45,9 +45,10 @@
                 >
                   +
                 </button>
-                &nbsp;&nbsp; <span :disabled="disablebtn">1</span>&nbsp;&nbsp;
+                &nbsp;&nbsp; <span>{{ counter }}</span>&nbsp;&nbsp;
                 <button
                   @click="decrease"
+                  :disabled="disablebtn"
                   style="
                     border-radius: 50%;
                     border: 0;
@@ -93,22 +94,36 @@ export default {
       visible: true,
       cart: [],
       url: "/api/products",
+      counter: 1,
     };
   },
+
+  computed: {
+        disablebtn() {
+            return this.counter == 1
+        }
+    },
   methods: {
     showDetails(product) {
       this.product = product;
     },
-    // async fetchAPIData() {
-    //   try {
-    //     const response = await this.$http.get(this.url);
-    //     const { data } = response.data;
-    //     this.products = data;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
+    async fetchAPIData() {
+      try {
+        const response = await this.$http.get(this.url);
+        const { data } = response.data;
+        this.products = data;
+      } catch (error) {
+        console.log(error);
+      }
     
-   // },
+   },
+
+    increase() {
+            this.counter++
+    },
+    decrease() {
+          this.counter--
+    },
 
     // addToCart(product) {
     //   //push prudt to cart
@@ -121,12 +136,8 @@ export default {
     // },
   },
   created() {
-    // this.fetchAPIData();
-     fetch(this.url)
-        .then(res => res.json())
-        .then(json => {
-          this.products = json.products
-        })
+    this.fetchAPIData();
+     
   },
 };
 </script>
