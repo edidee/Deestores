@@ -45,7 +45,7 @@
                 >
                   +
                 </button>
-                &nbsp;&nbsp; <span>{{ counter }}</span>&nbsp;&nbsp;
+                &nbsp;&nbsp; <span>{{ count }}</span>&nbsp;&nbsp;
                 <button
                   @click="decrease"
                   :disabled="disablebtn"
@@ -100,7 +100,10 @@ export default {
 
   computed: {
         disablebtn() {
-            return this.counter == 1
+            return this.$store.state.counter == 1
+        },
+        count() {
+          return this.$store.state.counter
         }
     },
   methods: {
