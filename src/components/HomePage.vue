@@ -94,7 +94,7 @@ export default {
       visible: true,
       cart: [],
       url: "/api/products",
-      counter: 1,
+      
     };
   },
 
@@ -119,10 +119,10 @@ export default {
    },
 
     increase() {
-            this.counter++
+            this.$store.commit("increament")
     },
     decrease() {
-          this.counter--
+        this.$store.commit("decrease")
     },
 
     // addToCart(product) {
