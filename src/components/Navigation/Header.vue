@@ -1,4 +1,5 @@
 <template>
+<header>
   <div>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
    <router-link to="/" class="navbar-brand">DeeStores</router-link>
@@ -32,6 +33,7 @@
   </div>
 </nav>
   </div>
+</header>
 </template>
 
 <style scoped>

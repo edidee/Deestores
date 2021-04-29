@@ -15,6 +15,8 @@ export default new Vuex.Store({
       state.counter--
     }
   },
-  actions: {},
+  actions: {
+    
+  },
   modules: {},
 });
