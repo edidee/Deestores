@@ -30,7 +30,7 @@ export default new Vuex.Store({
   actions: {
     async loadProducts({ commit }) {
       try {
-        const response = await axios.get("api/products");
+        const response = await axios.get("https://didi-be.herokuapp.com/");
         commit("SET_ITEMS", response.data.products);
       }
       catch (error) {
