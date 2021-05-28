@@ -89,16 +89,18 @@
 export default {
   data() {
     return {
-      products: [],
       product: null,
       visible: true,
       cart: [],
-      url: "/api/products",
       
     };
   },
 
   computed: {
+      products() {
+         return this.$store.getters.products;
+      },
+
         disablebtn() {
             return this.$store.state.counter == 1
         },
@@ -106,20 +108,11 @@ export default {
           return this.$store.state.counter
         }
     },
+    
   methods: {
     showDetails(product) {
       this.product = product;
     },
-    async fetchAPIData() {
-      try {
-        const response = await this.$http.get(this.url);
-        const { data } = response.data;
-        this.products = data;
-      } catch (error) {
-        console.log(error);
-      }
-    
-   },
 
     increase() {
             this.$store.commit("increament")
@@ -128,22 +121,14 @@ export default {
         this.$store.commit("decrease")
     },
 
-    // addToCart(product) {
-    //   //push prudt to cart
-    //   let isTrue = this.cart.some(el=> el === 'product')
-    //   if (isTrue) {
-    //     product++
-    //   }
-    //     this.cart.push(product);
-    //   // console.log(product);
-    // },
   },
   created() {
-    this.fetchAPIData();
+    this.$store.dispatch('loadProducts');
      
   },
 };
 </script>
+
 <style scoped>
 .card:hover {
   margin-top: 2rem;

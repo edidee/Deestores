@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from "axios";
+
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     counter: 1,
-    products:[],
+    products: [],
   },
   getters: {
     products: state => {
@@ -14,7 +16,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    SET_Item(state, products) {
+    SET_ITEMS(state, products) {
       state.products = products
     },
 
@@ -28,9 +30,8 @@ export default new Vuex.Store({
   actions: {
     async loadProducts({ commit }) {
       try {
-        const response = await this.$http.get("/api/products");
-        this.products = response.data
-        commit('SET_Items', 'products')
+        const response = await axios.get("api/products");
+        commit("SET_ITEMS", response.data.products);
       }
       catch (error) {
         console.log(error);

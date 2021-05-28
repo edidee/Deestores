@@ -1,6 +1,6 @@
 export default {
   status: true,
-  data: [
+  products: [
     {
       id: 0,
       title: "iphone x case",
