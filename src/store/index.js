@@ -9,6 +9,7 @@ export default new Vuex.Store({
   state: {
     counter: 1,
     products: [],
+    cart: [],
   },
   getters: {
     products: state => {
@@ -25,6 +26,12 @@ export default new Vuex.Store({
     },
     decrease(state) {
       state.counter--
+    },
+    ADD_TO_CART(state, { product, quantity }) {
+      state.cart.push({
+        product,
+        quantity
+      })
     }
   },
   actions: {
@@ -36,6 +43,9 @@ export default new Vuex.Store({
       catch (error) {
         console.log(error);
       }
+    },
+    addProductToCart({ commit }, { product, quantity }) {
+      commit("ADD_TO_CART", { product, quantity });
     }
   },
   modules: {},

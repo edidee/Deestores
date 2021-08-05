@@ -77,7 +77,7 @@
                 </b-form-select>
               </b-form>
             </div>
-            <button type="button" class="btn">Add to Cart</button>
+            <button type="button" class="btn" @click="addToCart()">Add to Cart</button>
           </div>
         </b-sidebar>
       </div>
@@ -91,7 +91,7 @@ export default {
     return {
       product: null,
       visible: true,
-      cart: [],
+      
       
     };
   },
@@ -119,6 +119,12 @@ export default {
     },
     decrease() {
         this.$store.commit("decrease")
+    },
+    addToCart() {
+      this.$store.dispatch("addProductToCart", {
+        product: this.product,
+        quantity: 1
+      })
     },
 
   },
