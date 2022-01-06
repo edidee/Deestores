@@ -1,6 +1,6 @@
-// src/server.js
+//src/server.js
 import { createServer, Response } from "miragejs";
-import Products from "./products";
+import Products from "./products.json";
 
 export function makeServer({ environment = "production" } = {}) {
   console.log(environment);
