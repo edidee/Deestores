@@ -37,11 +37,11 @@ export default new Vuex.Store({
   actions: {
     async loadProducts({ commit }) {
       try {
-        const response = await axios.get("https://didi-be.herokuapp.com/");
-        commit("SET_ITEMS", response.data.products);
+        const response = await axios.get("http://localhost:3000/products");
+        commit("SET_ITEMS", response.data);
       }
       catch (error) {
-        console.log(error);
+        console.log(error); //you can handle error properly here instead of logging the error 
       }
     },
     addProductToCart({ commit }, { product, quantity }) {
