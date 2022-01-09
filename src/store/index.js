@@ -37,7 +37,9 @@ export default new Vuex.Store({
   actions: {
     async loadProducts({ commit }) {
       try {
-        const response = await axios.get("http://localhost:3000/products");
+        const response = await axios.get(
+          "https://my-json-server.typicode.com/edidee/products-json/products"
+        );
         commit("SET_ITEMS", response.data);
       }
       catch (error) {
