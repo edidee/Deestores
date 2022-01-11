@@ -12,11 +12,13 @@
 import Header from "../components/Navigation/Header";
 import HomePage from "../components/HomePage";
 
+
 export default {
   name: "Home",
   components: {
     Header,
     HomePage,
+    
   },
 };
 </script>

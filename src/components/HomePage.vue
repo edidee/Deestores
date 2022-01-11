@@ -17,7 +17,7 @@
           <b-card-text class="text-left price">
             US ${{ product.price }}
           </b-card-text>
-          <button type="button" class="btn" @click="addToCart(product)">
+          <button type="button" class="btn">
             Add to Cart
           </button>
         </b-card>
@@ -32,6 +32,8 @@
               {{ product.description }}
             </p>
             <p class="price">US ${{ product.price }}</p>
+            <p class="price">{{ product.inventory }} pieces</p>
+
             <div class="d-flex justify-content-between">
               <div style="width: auto; margin-right: 6%" class="mb-3 mt-2">
                 <button
@@ -77,7 +79,7 @@
                 </b-form-select>
               </b-form>
             </div>
-            <button type="button" class="btn" @click="addToCart()">Add to Cart</button>
+            <button type="button" class="btn" @click="addToCart(product)">Add to Cart</button>
           </div>
         </b-sidebar>
       </div>
@@ -91,7 +93,8 @@ export default {
     return {
       product: null,
       visible: true,
-      
+    
+      cart: []
       
     };
   },
@@ -120,11 +123,9 @@ export default {
     decrease() {
         this.$store.commit("decrease")
     },
-    addToCart() {
-      this.$store.dispatch("addProductToCart", {
-        product: this.product,
-        quantity: 1
-      })
+    addToCart(product) {
+      this.$store.dispatch('addProductToCart', product)
+
     },
 
   },

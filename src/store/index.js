@@ -9,30 +9,52 @@ export default new Vuex.Store({
   state: {
     counter: 1,
     products: [],
+    items: {},
     cart: [],
   },
   getters: {
-    products: state => {
+    products: (state) => {
       return state.products;
+    },
+    cartProducts(state) {
+      return state.cart.map(cartItem => {
+        const product = state.products.find(product => product.id === cartItem.id)
+        return {
+          price: product.price,
+          title: product.title,
+          description: product.description,
+          quantity: cartItem.quantity,
+          image: product.image
+        }
+      })
     }
   },
   mutations: {
     SET_ITEMS(state, products) {
-      state.products = products
+      state.products = products;
     },
 
     increament(state) {
-      state.counter++
+      state.counter++;
     },
     decrease(state) {
-      state.counter--
+      state.counter--;
     },
-    ADD_TO_CART(state, { product, quantity }) {
+
+    pushProductToCart(state, productId) {
       state.cart.push({
-        product,
-        quantity
-      })
-    }
+        id: productId,
+        quantity: 1
+      });
+    },
+
+    increaseItemQuantity(state, cartItem){
+      cartItem.quantity++
+    },
+
+    decreaseProductInventory(state, product) {
+      product.inventory--
+    },
   },
   actions: {
     async loadProducts({ commit }) {
@@ -41,14 +63,23 @@ export default new Vuex.Store({
           "https://my-json-server.typicode.com/edidee/products-json/products"
         );
         commit("SET_ITEMS", response.data);
-      }
-      catch (error) {
-        console.log(error); //you can handle error properly here instead of logging the error 
+      } catch (error) {
+        console.log(error); //you can handle error properly here instead of logging the error
       }
     },
-    addProductToCart({ commit }, { product, quantity }) {
-      commit("ADD_TO_CART", { product, quantity });
-    }
+    addProductToCart(context, product) {
+      if (product.inventory > 0) {
+        const cartItem = context.state.cart.find(
+          (item) => item.id === product.id
+        );
+        if (!cartItem) {
+          context.commit("pushProductToCart", product.id);
+        } else {
+          context.commit("increaseItemQuantity", cartItem);
+        }
+        context.commit("decreaseProductInventory", product);
+      }
+    },
   },
   modules: {},
 });
