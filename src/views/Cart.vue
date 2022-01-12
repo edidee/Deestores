@@ -5,11 +5,10 @@
       <b-row>
         <b-col cols="8" v-for="product in products" :key="product.id">
           <b-card
-            
             :img-src="product.image"
             img-alt="image"
             img-left
-            class="mb-3"
+            class="mb-3 img-fluid"
           >
             <b-card-text>
                 <h5>{{ product.title}}</h5>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div></div>
+    
     <div class="row">
       <div class="col-md-3 mt-5" v-for="product in products" :key="product.id">
         <b-card
@@ -79,60 +79,66 @@
                 </b-form-select>
               </b-form>
             </div>
-            <button type="button" class="btn" @click="addToCart(product)">Add to Cart</button>
+            <button type="button" class="btn" @click="addToCart(product); $bvModal.show('bv-modal-example')">Add to Cart</button>
           </div>
         </b-sidebar>
       </div>
     </div>
+    <div>
+
+  <b-modal id="bv-modal-example" hide-footer>
+    <div class="d-block text-center">
+      <h3> item has been added to your cart</h3>
+    </div>
+    <router-link to="/cart">
+    <b-button class="mt-3" >Go to cart</b-button>
+    </router-link>
+
+  </b-modal>
+</div>
   </div>
 </template>
 
 <script>
+
 export default {
-  data() {
-    return {
-      product: null,
-      visible: true,
     
-      cart: []
-      
-    };
-  },
-
-  computed: {
-      products() {
-         return this.$store.getters.products;
-      },
-
+    data() {
+        return {
+            product: null,
+            visible: true,
+            cart: []
+        };
+    },
+    computed: {
+        products() {
+            return this.$store.getters.products;
+        },
         disablebtn() {
-            return this.$store.state.counter == 1
+            return this.$store.state.counter == 1;
         },
         count() {
-          return this.$store.state.counter
+            return this.$store.state.counter;
         }
     },
-    
-  methods: {
-    showDetails(product) {
-      this.product = product;
+    methods: {
+        showDetails(product) {
+            this.product = product;
+        },
+        increase() {
+            this.$store.commit("increament");
+        },
+        decrease() {
+            this.$store.commit("decrease");
+        },
+        addToCart(product) {
+            this.$store.dispatch("addProductToCart", product);
+        },
     },
-
-    increase() {
-            this.$store.commit("increament")
+    created() {
+        this.$store.dispatch("loadProducts");
     },
-    decrease() {
-        this.$store.commit("decrease")
-    },
-    addToCart(product) {
-      this.$store.dispatch('addProductToCart', product)
-
-    },
-
-  },
-  created() {
-    this.$store.dispatch('loadProducts');
-     
-  },
+   
 };
 </script>
 
