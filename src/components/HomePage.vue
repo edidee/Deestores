@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    
     <div class="row">
       <div class="col-md-3 mt-5" v-for="product in products" :key="product.id">
         <b-card
@@ -17,9 +16,7 @@
           <b-card-text class="text-left price">
             US ${{ product.price }}
           </b-card-text>
-          <button type="button" class="btn">
-            Add to Cart
-          </button>
+          <button type="button" class="btn">Add to Cart</button>
         </b-card>
       </div>
 
@@ -27,7 +24,7 @@
         <!-- <b-button >Toggle Sidebar</b-button> -->
         <b-sidebar id="sidebar-right" :title="product.title" right shadow>
           <div class="px-3 py-2">
-            <b-img :src="product.image" fluid thumbnail></b-img><br>
+            <b-img :src="product.image" fluid thumbnail></b-img><br />
             <p>
               {{ product.description }}
             </p>
@@ -47,7 +44,8 @@
                 >
                   +
                 </button>
-                &nbsp;&nbsp; <span>{{ count }}</span>&nbsp;&nbsp;
+                &nbsp;&nbsp; <span>{{ count }}</span
+                >&nbsp;&nbsp;
                 <button
                   @click="decrease"
                   :disabled="disablebtn"
@@ -79,66 +77,70 @@
                 </b-form-select>
               </b-form>
             </div>
-            <button type="button" class="btn" @click="addToCart(product); $bvModal.show('bv-modal-example')">Add to Cart</button>
+            <button
+              type="button"
+              class="btn"
+              @click="
+                addToCart(product);
+                $bvModal.show('bv-modal-example');
+              "
+            >
+              Add to Cart
+            </button>
           </div>
         </b-sidebar>
+        <div>
+          <b-modal id="bv-modal-example" hide-footer>
+            <div class="d-block text-center">
+              <h3>{{ product.title }} has been added to your cart</h3>
+            </div>
+            <router-link to="/cart">
+              <b-button class="mt-3">Go to cart</b-button>
+            </router-link>
+          </b-modal>
+        </div>
       </div>
     </div>
-    <div>
-
-  <b-modal id="bv-modal-example" hide-footer>
-    <div class="d-block text-center">
-      <h3> item has been added to your cart</h3>
-    </div>
-    <router-link to="/cart">
-    <b-button class="mt-3" >Go to cart</b-button>
-    </router-link>
-
-  </b-modal>
-</div>
   </div>
 </template>
 
 <script>
-
 export default {
-    
-    data() {
-        return {
-            product: null,
-            visible: true,
-            cart: []
-        };
+  data() {
+    return {
+      product: null,
+      visible: true,
+      cart: [],
+    };
+  },
+  computed: {
+    products() {
+      return this.$store.getters.products;
     },
-    computed: {
-        products() {
-            return this.$store.getters.products;
-        },
-        disablebtn() {
-            return this.$store.state.counter == 1;
-        },
-        count() {
-            return this.$store.state.counter;
-        }
+    disablebtn() {
+      return this.$store.state.counter == 1;
     },
-    methods: {
-        showDetails(product) {
-            this.product = product;
-        },
-        increase() {
-            this.$store.commit("increament");
-        },
-        decrease() {
-            this.$store.commit("decrease");
-        },
-        addToCart(product) {
-            this.$store.dispatch("addProductToCart", product);
-        },
+    count() {
+      return this.$store.state.counter;
     },
-    created() {
-        this.$store.dispatch("loadProducts");
+  },
+  methods: {
+    showDetails(product) {
+      this.product = product;
     },
-   
+    increase() {
+      this.$store.commit("increament");
+    },
+    decrease() {
+      this.$store.commit("decrease");
+    },
+    addToCart(product) {
+      this.$store.dispatch("addProductToCart", product);
+    },
+  },
+  created() {
+    this.$store.dispatch("loadProducts");
+  },
 };
 </script>
 
