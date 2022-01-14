@@ -3,27 +3,30 @@
     <Header />
     <b-container class="mt-5">
       <b-row>
-        <b-col cols="8" v-for="product in products" :key="product.id" class="products">
+        <b-col col lg="8" v-for="product in products" :key="product.id" class="products">
           <b-card
             :img-src="product.image"
             img-alt="image"
             img-left
             fluid
+            style="max-width: auto"
             class="mb-3"
           >
-            <b-card-text>
+            <b-card-text class="text-left">
+              <div class="card-head">
               <h5>{{ product.title }}</h5>
+              <ion-icon name="trash-outline" @click="deleteItem(product)"></ion-icon>
+              </div>
               <hr />
               <p>{{ product.description }}</p>
               <p>
-                <b>$ {{ product.price }}</b>
+                <b>Price: $ {{ product.price }}</b>
               </p>
               <p>Quantity: {{ product.quantity }}</p>
-              <b-button href="#" variant="primary">Buy case</b-button>
             </b-card-text>
           </b-card>
         </b-col>
-        <b-col cols="4" class="summary">
+        <b-col col lg="4" class="summary">
           <b-card>
             <h3>Order Total</h3>
             <b-card-text>
@@ -52,19 +55,30 @@ export default {
       return this.$store.getters.cartTotal;
     },
   },
+  methods: {
+    deleteItem(product) {
+      this.$store.dispatch("deleteItemFromCart", product);
+    },
+  },
 };
 </script>
 
 <style scoped>
-.products {
-  position: relative;
-}
-.summary {
-    position: fixed!important;
-    top: 106px;
-    right: 0;
-    z-index: 1
-}
+/*.products {
+   position: relative; 
+   } */
+@media only screen and (min-width: 992px) {
 
+  .summary {
+      position: fixed!important;
+      top: 106px;
+      right: 0;
+      z-index: 1
+  }
+}
+.card-head{
+  display: flex;
+  justify-content:space-between;
+}
 
 </style>

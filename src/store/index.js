@@ -9,7 +9,6 @@ export default new Vuex.Store({
   state: {
     counter: 1,
     products: [],
-    items: {},
     cart: [],
   },
   getters: {
@@ -17,20 +16,25 @@ export default new Vuex.Store({
       return state.products;
     },
     cartProducts(state) {
-      return state.cart.map(cartItem => {
-        const product = state.products.find(product => product.id === cartItem.id)
+      return state.cart.map((cartItem) => {
+        const product = state.products.find(
+          (product) => product.id === cartItem.id
+        );
         return {
           price: product.price,
           title: product.title,
           description: product.description,
           quantity: cartItem.quantity,
-          image: product.image
-        }
-      })
+          image: product.image,
+        };
+      });
     },
     cartTotal(state, getters) {
-      return getters.cartProducts.reduce((total, product) => total + product.price * product.quantity, 0)
-    }
+      return getters.cartProducts.reduce(
+        (total, product) => total + product.price * product.quantity,
+        0
+      );
+    },
   },
   mutations: {
     SET_ITEMS(state, products) {
@@ -47,16 +51,21 @@ export default new Vuex.Store({
     pushProductToCart(state, productId) {
       state.cart.push({
         id: productId,
-        quantity: 1
+        quantity: 1,
       });
     },
 
-    increaseItemQuantity(state, cartItem){
-      cartItem.quantity++
+    increaseItemQuantity(state, cartItem) {
+      cartItem.quantity++;
     },
 
     decreaseProductInventory(state, product) {
-      product.inventory--
+      product.inventory--;
+    },
+    deleteItem(state, product) {
+      state.cart = state.cart.filter((item) => {
+        return item.id != product.id;
+      });
     },
   },
   actions: {
@@ -82,6 +91,9 @@ export default new Vuex.Store({
         }
         context.commit("decreaseProductInventory", product);
       }
+    },
+    deleteItemFromCart({ commit }, product) {
+      commit("deleteItem", product);
     },
   },
   modules: {},

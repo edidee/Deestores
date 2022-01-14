@@ -146,7 +146,7 @@ export default {
 
 <style scoped>
 .card:hover {
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 b-card-text {
