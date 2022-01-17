@@ -3,7 +3,13 @@
     <Header />
     <b-container class="mt-5">
       <b-row>
-        <b-col col lg="8" v-for="product in products" :key="product.id" class="products">
+        <b-col
+          col
+          lg="8"
+          v-for="product in products"
+          :key="product.id"
+          class="products"
+        >
           <b-card
             :img-src="product.image"
             img-alt="image"
@@ -14,8 +20,11 @@
           >
             <b-card-text class="text-left">
               <div class="card-head">
-              <h5>{{ product.title }}</h5>
-              <ion-icon name="trash-outline" @click="deleteItem(product)"></ion-icon>
+                <h5>{{ product.title }}</h5>
+                <ion-icon
+                  name="trash-outline"
+                  @click="deleteItem(product)"
+                ></ion-icon>
               </div>
               <hr />
               <p>{{ product.description }}</p>
@@ -26,15 +35,25 @@
             </b-card-text>
           </b-card>
         </b-col>
-        <b-col col lg="4" class="summary">
+        <b-col col lg="4" class="summary" v-if="products.length">
           <b-card>
             <h3>Order Total</h3>
-            <b-card-text>
-             ${{ total }}
-            </b-card-text>
+            <b-card-text> ${{ total }} </b-card-text>
 
-            <b-button href="#" variant="primary">BUY</b-button>
+            <b-button href="#" class="btn">BUY</b-button>
           </b-card>
+        </b-col>
+        <b-col v-else>
+          <h3>Your Cart is empty</h3>
+          <b-img
+            src="https://cdn.dribbble.com/users/2046015/screenshots/4591856/first_white_girl_drbl.gif"
+            alt="Empty cart"
+            fluid
+            class="empty-cart-img"
+          ></b-img>
+          <router-link to="/">
+            <b-button class="btn">Start shopping</b-button>
+          </router-link>
         </b-col>
       </b-row>
     </b-container>
@@ -54,9 +73,16 @@ export default {
     total() {
       return this.$store.getters.cartTotal;
     },
+
+    cart() {
+      return this.$store.state.cart;
+    },
   },
   methods: {
     deleteItem(product) {
+      const prodInCart = this.cart;
+      prodInCart.forEach((prod) => prod === product);
+
       this.$store.dispatch("deleteItemFromCart", product);
     },
   },
@@ -68,17 +94,23 @@ export default {
    position: relative; 
    } */
 @media only screen and (min-width: 992px) {
-
   .summary {
-      position: fixed!important;
-      top: 106px;
-      right: 0;
-      z-index: 1
+    position: fixed !important;
+    top: 106px;
+    right: 0;
+    z-index: 1;
   }
 }
-.card-head{
+.card-head {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-
+.btn {
+  background-color: #fb9811;
+  border: 1px solid #fb9811;
+  color: #ffff;
+}
+.empty-cart-img{
+  width: 100%;
+}
 </style>
