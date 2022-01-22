@@ -59,7 +59,7 @@
 
 .cart-icon {
   font-size: 1.9rem;
-  color: #FB9811;
+  color: #FB9811 !important;
 }
 
 .btn-outline-success{
