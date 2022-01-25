@@ -6,6 +6,7 @@
         <b-col
           col
           lg="8"
+          sm="12"
           v-for="product in products"
           :key="product.id"
           class="products"
@@ -14,8 +15,8 @@
             :img-src="product.image"
             img-alt="image"
             img-left
-            fluid
-            style="max-width: auto"
+            tag="article"
+            style="max-width: 100%"
             class="mb-3"
           >
             <b-card-text class="text-left">
