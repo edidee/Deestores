@@ -71,8 +71,9 @@ export default new Vuex.Store({
       product.inventory--;
     },   
     deleteItem(state, product) {
-     let index = state.cart.findIndex((prod) => prod.id === product.id);
-     state.cart.splice(index, 1);
+      state.cart = state.cart.filter(x=> x.id !== product.id)
+    //  let index = state.cart.findIndex((prod) => prod.id === product.id);
+    //  state.cart.splice(index, 1);
     },
 
     // Filter product

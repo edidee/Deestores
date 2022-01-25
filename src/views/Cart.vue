@@ -2,22 +2,20 @@
   <div>
     <Header />
     <b-container class="mt-5">
-      <b-row>
-        <b-col
-          col
-          lg="8"
-          sm="12"
+      <div class="row">
+        <div
+          
           v-for="product in products"
           :key="product.id"
-          class="products"
+          class="col-lg-8 col-sm-12 products"
         >
           <b-card
             :img-src="product.image"
-            img-alt="image"
-            img-left
+            img-alt="product image"
+            img-top
             tag="article"
-            style="max-width: 100%"
-            class="mb-3"
+            style="max-width: auto"
+            class="mb-3 cart-card"
           >
             <b-card-text class="text-left">
               <div class="card-head">
@@ -35,7 +33,10 @@
               <p>Quantity: {{ product.quantity }}</p>
             </b-card-text>
           </b-card>
-        </b-col>
+        </div>
+
+
+        
         <b-col col lg="4" class="summary" v-if="products.length">
           <b-card>
             <h3>Order Total</h3>
@@ -56,7 +57,7 @@
             <b-button class="btn">Start shopping</b-button>
           </router-link>
         </b-col>
-      </b-row>
+      </div>
     </b-container>
   </div>
 </template>
@@ -81,8 +82,6 @@ export default {
   },
   methods: {
     deleteItem(product) {
-      const prodInCart = this.cart;
-      prodInCart.forEach((prod) => prod === product);
 
       this.$store.dispatch("deleteItemFromCart", product);
     },
@@ -111,7 +110,11 @@ export default {
   border: 1px solid #fb9811;
   color: #ffff;
 }
-.empty-cart-img{
+/* .empty-cart-img{
   width: 100%;
+} */
+
+.cart-card {
+  flex-shrink: 0;
 }
 </style>
