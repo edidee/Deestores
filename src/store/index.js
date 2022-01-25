@@ -10,10 +10,18 @@ export default new Vuex.Store({
     counter: 1,
     products: [],
     cart: [],
+    searchQuery: ''
   },
   getters: {
+    // filter products 
     products: (state) => {
-      return state.products;
+      if (state.searchQuery === '') {   
+        return state.products;
+      } else {
+        return state.products.filter((prod) => {
+          return prod.title.toLowerCase().includes(state.searchQuery.toLowerCase())
+        });
+      }
     },
     cartProducts(state) {
       return state.cart.map((cartItem) => {
@@ -61,12 +69,18 @@ export default new Vuex.Store({
 
     decreaseProductInventory(state, product) {
       product.inventory--;
-    },
+    },   
     deleteItem(state, product) {
      let index = state.cart.findIndex((prod) => prod.id === product.id);
      state.cart.splice(index, 1);
     },
+
+    // Filter product
+    FILTER_PRODUCTS(state, payload) {
+      state.searchQuery= payload
+    }
   },
+
   actions: {
     async loadProducts({ commit }) {
       try {
@@ -94,6 +108,11 @@ export default new Vuex.Store({
     deleteItemFromCart({ commit }, product) {
       commit("deleteItem", product);
     },
+
+    // filter products
+    filteredProducts({ commit }, searchQuery) {
+      commit('FILTER_PRODUCTS', searchQuery);
+    }
   },
   modules: {},
 });

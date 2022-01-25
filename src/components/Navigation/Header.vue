@@ -9,9 +9,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent ">
     
-    <form class="form-inline my-2 my-lg-0 ml-auto">
-      <input class="form-control mr-sm-2" type="search" placeholder="I'm shopping for..." aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form class="form-inline my-2 my-lg-0 ml-auto" onsubmit="filteredData">
+      <input class="form-control mr-sm-2" type="search" placeholder="I'm shopping for..." aria-label="Search" v-model="searchQuery">
+      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
     </form>
     <ul class="navbar-nav mt-2">
       <li class="nav-item active">
@@ -35,6 +35,30 @@
   </div>
 </header>
 </template>
+
+<script>
+// import { mapGetters } from "vuex"
+
+export default {
+  data () {
+    return {
+      searchQuery: ''
+    }
+  },
+  methods: {
+    filteredProducts() {
+      this.$store.dispatch('filteredProducts', this.searchQuery)
+    }
+  },
+  // computed: {
+  //   ...mapGetters(["products"]),
+  //   filteredData() {
+  //     return this.products.filter(prod => prod.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
+  //   }
+  // },
+}
+</script>
+
 
 <style scoped>
 .nav-bar{
