@@ -34,6 +34,7 @@ export default new Vuex.Store({
           description: product.description,
           quantity: cartItem.quantity,
           image: product.image,
+          id: product.id
         };
       });
     },

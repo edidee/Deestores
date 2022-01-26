@@ -12,7 +12,7 @@
           <b-card
             :img-src="product.image"
             img-alt="product image"
-            img-top
+            img-left
             tag="article"
             style="max-width: auto"
             class="mb-3 cart-card"
@@ -37,14 +37,14 @@
 
 
         
-        <b-col col lg="4" class="summary" v-if="products.length">
+        <div  class="col-lg-4 summary" v-if="products.length">
           <b-card>
             <h3>Order Total</h3>
             <b-card-text> ${{ total }} </b-card-text>
 
             <b-button href="#" class="btn">BUY</b-button>
           </b-card>
-        </b-col>
+        </div>
         <b-col v-else>
           <h3>Your Cart is empty</h3>
           <b-img
@@ -90,10 +90,10 @@ export default {
 </script>
 
 <style scoped>
-/*.products {
-   position: relative; 
-   } */
 @media only screen and (min-width: 992px) {
+  .products {
+     position: relative; 
+     }
   .summary {
     position: fixed !important;
     top: 106px;
