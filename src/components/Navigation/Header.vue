@@ -7,12 +7,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent ">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
     
     <form class="form-inline my-2 my-lg-0 ml-auto" v-on:keyup="filteredProducts()">
       <input class="form-control mr-sm-2" type="search" placeholder="I'm shopping for..." aria-label="Search" v-model="searchQuery">
     </form>
-    <ul class="navbar-nav mt-2">
+    <ul class="navbar-nav mt-2 ">
       <li class="nav-item active">
           <router-link to="/login" class="nav-link ml-2" >
           Login
@@ -93,4 +93,35 @@ export default {
   font-weight: 600;
   
 }
+@media screen and (min-width: 1024px) {
+    .navbar-brand {
+      margin-left: 2rem;
+    }
+
+    .navbar-nav {
+      margin-right: 2rem;
+    }
+  
+  }
+
+@media screen and (min-width: 1280px)  {
+  .navbar-brand {
+    margin-left: 4rem;
+  }
+
+   .navbar-nav {
+      margin-right: 4rem;
+    }
+}
+@media screen and (min-width: 1550px) {
+  .navbar-brand {
+    margin-left: 13.7rem;
+  }
+
+   .navbar-nav {
+      margin-right: 13.7rem;
+    }
+
+}
+
 </style>
