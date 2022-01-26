@@ -11,7 +11,6 @@
     
     <form class="form-inline my-2 my-lg-0 ml-auto" v-on:keyup="filteredProducts()">
       <input class="form-control mr-sm-2" type="search" placeholder="I'm shopping for..." aria-label="Search" v-model="searchQuery">
-      <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
     </form>
     <ul class="navbar-nav mt-2">
       <li class="nav-item active">
@@ -37,7 +36,6 @@
 </template>
 
 <script>
-// import { mapGetters } from "vuex"
 
 export default {
   data () {
@@ -50,12 +48,7 @@ export default {
       this.$store.dispatch('filteredProducts', this.searchQuery)
     }
   },
-  // computed: {
-  //   ...mapGetters(["products"]),
-  //   filteredData() {
-  //     return this.products.filter(prod => prod.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
-  //   }
-  // },
+  
 }
 </script>
 
@@ -98,6 +91,6 @@ export default {
 
 .nav-link {
   font-weight: 600;
-  /* font-size: 0.9rem; */
+  
 }
 </style>

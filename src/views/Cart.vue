@@ -110,9 +110,6 @@ export default {
   border: 1px solid #fb9811;
   color: #ffff;
 }
-/* .empty-cart-img{
-  width: 100%;
-} */
 
 .cart-card {
   flex-shrink: 0;
