@@ -9,7 +9,7 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent ">
     
-    <form class="form-inline my-2 my-lg-0 ml-auto" onsubmit="filteredData">
+    <form class="form-inline my-2 my-lg-0 ml-auto" v-on:keyup="filteredProducts()">
       <input class="form-control mr-sm-2" type="search" placeholder="I'm shopping for..." aria-label="Search" v-model="searchQuery">
       <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
     </form>
