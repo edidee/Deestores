@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Header />
         <b-form @submit="onSubmit" @reset="onReset" v-if="show" class="login-form">
       <b-form-group
         id="input-group-1"
@@ -45,11 +44,8 @@
 </template>
 
 <script>
-import Header from '../components/Navigation/Header'
 export default {
-    components: {
-        Header
-    },
+    
     data() {
       return {
         form: {

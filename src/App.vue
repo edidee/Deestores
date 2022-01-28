@@ -1,12 +1,22 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link>
-    </div> -->
+    <AppHeader />
     <router-view/>
+    <AppFooter />
+    
   </div>
 </template>
+
+<script>
+import AppHeader from "./components/Navigation/AppHeader.vue"
+import AppFooter from "./components/Navigation/AppFooter.vue"
+export default {
+  components: {
+   AppHeader,
+   AppFooter
+  }
+}
+</script>
 
 <style>
 #app {

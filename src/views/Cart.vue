@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header />
     <b-container class="mt-5">
       <div class="row">
         <div
@@ -63,10 +62,8 @@
 </template>
 
 <script>
-import Header from "../components/Navigation/Header";
 export default {
   components: {
-    Header,
   },
   computed: {
     products() {
