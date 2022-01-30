@@ -84,6 +84,7 @@
                 addToCart(product);
                 $bvModal.show('bv-modal-example');
               "
+              v-b-toggle.sidebar-right
             >
               Add to Cart
             </button>
