@@ -14,15 +14,16 @@
     </form>
     <ul class="navbar-nav mt-2 ">
       <li class="nav-item active">
+          <router-link to="/" class="nav-link ml-2" >
+          Home
+          </router-link>
+      </li>
+      <li class="nav-item active">
           <router-link to="/login" class="nav-link ml-2" >
           Login
           </router-link>
       </li>
-      <li class="nav-item">
-          <router-link to="/signup" class="nav-link">
-            Sign Up
-          </router-link>
-      </li>
+     
       <li class="nav-item" >
           <router-link to="/cart" class="nav-link">
            <ion-icon name="cart-outline" class="cart-icon"></ion-icon>

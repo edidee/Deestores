@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cart">
     <b-container class="mt-5">
       <div class="row">
         <div
@@ -87,6 +87,9 @@ export default {
 </script>
 
 <style scoped>
+.cart {
+  height: auto;
+}
 @media only screen and (min-width: 992px) {
   .products {
      position: relative; 

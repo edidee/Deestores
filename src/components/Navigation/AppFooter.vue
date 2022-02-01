@@ -1,5 +1,5 @@
 <template>
-    <div  style="background-color: black; color: white">
+    <footer  style="background-color: black; color: white">
         
          <div class="col col-md-auto text-center">
         <small>
@@ -8,5 +8,6 @@
           <a href="#">Terms of Service.</a>
         </small>
       </div>
-    </div>
+    </footer>
 </template>
+
