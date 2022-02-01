@@ -22,7 +22,12 @@
           <p  v-if="!$auth.isAuthenticated" @click="login" class="nav-link ml-2" >
           Login
           </p>
+          <p  v-if="$auth.isAuthenticated" @click="logout" class="nav-link ml-2" >
+          Logout
+          </p>
       </li>
+      <!-- <li class="nav-item active" v-if="!$auth.loading">
+      </li> -->
      
       <li class="nav-item" >
           <router-link to="/cart" class="nav-link">
@@ -51,6 +56,11 @@ export default {
      login() {
       this.$auth.loginWithPopup(); 
     },
+     logout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
+    }
   },
   
 }
@@ -67,6 +77,9 @@ export default {
     color: #1a1b1b;
 }
 
+.nav-item p{
+  cursor: pointer !important;
+}
 .btn-secondary {
     background-color: #FF4500;
     color: #ffff;
