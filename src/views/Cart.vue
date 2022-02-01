@@ -40,8 +40,10 @@
           <b-card>
             <h3>Order Total</h3>
             <b-card-text> ${{ total }} </b-card-text>
+            
 
-            <b-button href="#" class="btn">BUY</b-button>
+            <b-button class="btn">BUY</b-button>
+            
           </b-card>
         </div>
         <b-col v-else>
@@ -82,6 +84,7 @@ export default {
 
       this.$store.dispatch("deleteItemFromCart", product);
     },
+    
   },
 };
 </script>
