@@ -18,10 +18,10 @@
           Home
           </router-link>
       </li>
-      <li class="nav-item active">
-          <router-link to="/login" class="nav-link ml-2" >
+      <li class="nav-item active" v-if="!$auth.loading">
+          <p  v-if="!$auth.isAuthenticated" @click="login" class="nav-link ml-2" >
           Login
-          </router-link>
+          </p>
       </li>
      
       <li class="nav-item" >
@@ -47,7 +47,10 @@ export default {
   methods: {
     filteredProducts() {
       this.$store.dispatch('filteredProducts', this.searchQuery)
-    }
+    },
+     login() {
+      this.$auth.loginWithPopup(); 
+    },
   },
   
 }
