@@ -77,6 +77,11 @@ export default {
     color: #1a1b1b;
 }
 
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-nav .nav-link:hover{
+  color: #FB9811;
+}
+
 .nav-item p{
   cursor: pointer !important;
 }
